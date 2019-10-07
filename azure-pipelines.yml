@@ -11,6 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  imageName: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)

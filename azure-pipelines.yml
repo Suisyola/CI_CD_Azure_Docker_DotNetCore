@@ -17,3 +17,8 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - script: dotnet test CI_CD_WebApp-tests/CI_CD_WebApp-tests.csproj --logger trx
   displayName: Run unit tests
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'

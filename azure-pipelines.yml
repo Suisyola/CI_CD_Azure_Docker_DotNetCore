@@ -37,8 +37,8 @@ steps:
   displayName: Tag image
   inputs:
     command: tag
-    imageName: 'suisyola/ci_cd_asp_net_core_webapp:latest'
-    arguments: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'    
+    imageName: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'
+    arguments: 'suisyola/ci_cd_asp_net_core_webapp:latest'    
 - task: Docker@1
   displayName: Push an image
   inputs:

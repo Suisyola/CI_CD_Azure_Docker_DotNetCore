@@ -34,6 +34,12 @@ steps:
     imageNamesPath: 
     restartPolicy: always
 - task: Docker@1
+  displayName: Tag image
+  inputs:
+    command: tag
+    imageName: 'suisyola/ci_cd_asp_net_core_webapp:latest'
+    arguments: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'    
+- task: Docker@1
   displayName: Push an image
   inputs:
     command: Push an image

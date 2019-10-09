@@ -11,7 +11,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  imageName: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'
+  dockerRepoName: 'suisyola/ci_cd_asp_net_core_webapp'
+  imageName: '$(dockerRepoName):$(build.buildNumber)'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
@@ -37,15 +38,25 @@ steps:
   displayName: Tag image
   inputs:
     command: tag
-    imageName: 'suisyola/ci_cd_asp_net_core_webapp:$(build.buildNumber)'
-    arguments: 'suisyola/ci_cd_asp_net_core_webapp:latest'    
+    imageName: '$(imageName)'
+    arguments: '$(dockerRepoName):latest'    
 - task: Docker@1
-  displayName: Push an image
+  displayName: Push an image with specific build tag
   inputs:
     command: Push an image
     containerregistrytype: Container Registry
     dockerRegistryEndpoint: DockerHub
     dockerFile: Dockerfile
     imageName: $(imageName)
+    imageNamesPath: 
+    restartPolicy: always
+- task: Docker@1
+  displayName: Push an image with latest tag
+  inputs:
+    command: Push an image
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: DockerHub
+    dockerFile: Dockerfile
+    imageName: '$(dockerRepoName):latest'
     imageNamesPath: 
     restartPolicy: always

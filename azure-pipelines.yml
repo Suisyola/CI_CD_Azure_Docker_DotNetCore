@@ -12,7 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   dockerRepoName: 'suisyola/ci_cd_asp_net_core_webapp'
-  imageName: '$(dockerRepoName):$(build.buildNumber)'
+  imageName: '$(dockerRepoName):$(Build.BuildNumber)'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)

@@ -22,6 +22,8 @@ namespace CI_CD_WebApp.Models
         {
             List<Notification> notifications = new List<Notification>();
 
+            Console.WriteLine("Connection String is " + ConnectionString);
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();

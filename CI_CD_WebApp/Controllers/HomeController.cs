@@ -12,7 +12,9 @@ namespace CI_CD_WebApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            DbContext context = HttpContext.RequestServices.GetService(typeof(DbContext)) as DbContext;
+
+            return View(context.GetAllNotifications());
         }
 
         public IActionResult About()

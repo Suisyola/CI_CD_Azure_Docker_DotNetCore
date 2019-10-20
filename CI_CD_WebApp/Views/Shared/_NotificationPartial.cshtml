@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CI_CD_WebApp.Models.Notification>
+
+<nav class="navbar navbar-default" role="alert">
+  <div class="collapse navbar-collapse">
+    <p class="navbar-text">
+      @foreach (var notification in Model)
+      {
+          <ul>
+            <li>@notification.Text</li>
+          </ul>
+      }
+    </p>
+  </div>
+</nav>
